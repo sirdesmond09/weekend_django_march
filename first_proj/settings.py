@@ -30,9 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["wanderful.pythonanywhere.com"]
 
 
 # Application definition
@@ -102,11 +102,11 @@ WSGI_APPLICATION = 'first_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog_database', # database name
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': 'wanderful$wanderfuldb', # database name
+        'USER': 'wanderful',
+        'PASSWORD': os.getenv("db_password"),
+        'HOST': os.getenv("db_host"),
+        'PORT': '',
     }
 }
 
