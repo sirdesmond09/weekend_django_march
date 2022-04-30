@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv, find_dotenv
+# import pymysql
+
+# pymysql.install_as_MySQLdb()
 
 load_dotenv(find_dotenv())
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "main",
     "blog",
+    "account",
     "rest_framework",
     "coreapi",
     'drf_yasg',
@@ -81,13 +85,24 @@ WSGI_APPLICATION = 'first_proj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blog_database', # database name
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -129,3 +144,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "account.CustomUser"
