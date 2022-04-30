@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes 
-from rest_framework.authentication import BasicAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 from .models import BlogPost
 from .serializers import BlogPostSerializer
@@ -10,7 +10,7 @@ from rest_framework.exceptions import PermissionDenied
 
 @swagger_auto_schema(method="post", request_body=BlogPostSerializer())
 @api_view(["GET", "POST"])
-@authentication_classes([BasicAuthentication])
+@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def posts(request):
     if request.method == "GET":
@@ -51,7 +51,7 @@ def posts(request):
 
 @swagger_auto_schema(methods=['put', 'delete'], request_body=BlogPostSerializer())
 @api_view(["GET", "PUT", "DELETE"])
-@authentication_classes([BasicAuthentication])
+@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def post_detail(request, post_id):
     post = BlogPost.objects.get(id=post_id)
