@@ -34,7 +34,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["wanderful.pythonanywhere.com"]
 
-
+# ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
